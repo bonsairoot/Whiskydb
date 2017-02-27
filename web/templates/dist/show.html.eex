@@ -1,0 +1,27 @@
+<h3><%= @dist.name %></h3>
+<h3>Founded: <%= @dist.founded %></h3>
+<h3>Status: <%= @dist.status %></h3>
+<h3>Description: <%= @dist.description %></h3>
+<h3>Region: <%= @dist.region %></h3>
+<div id="map" style="height: 400px;width: 100%"></div>
+<script>
+    var map;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: <%= @dist.lat %>,
+                lng: <%= @dist.long %>
+            },
+            zoom: 8
+        });
+        var marker = new google.maps.Marker({
+            position: {
+                lat: <%= @dist.lat %>,
+                lng: <%= @dist.long %>
+            },
+            map: map,
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Application.get_env(:whiskydb, :maps)[:app_id] %>&callback=initMap" async defer></script>

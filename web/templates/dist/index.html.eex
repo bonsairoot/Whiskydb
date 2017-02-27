@@ -1,0 +1,26 @@
+<h2>Listing distilleries</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Founded</th>
+      <th>Status</th>
+      <th>Description</th>
+      <th>Lat</th>
+      <th>Long</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for dist <- @dists do %>
+    <tr>
+      <td><%= link dist.name, to: dist_path(@conn, :show, dist) %></td>
+      <td><%= dist.founded %></td>
+      <td><%= dist.status%></td>
+      <td><%= dist.description %></td>
+      <td><%= dist.lat %></td>
+      <td><%= dist.long %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
